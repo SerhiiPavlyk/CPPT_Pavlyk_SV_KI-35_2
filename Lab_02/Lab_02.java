@@ -9,10 +9,10 @@ import java.io.*;
  *
  */
 public class Lab_02 {
-    /**
+/**
  * Статичний метод main є точкою входу в програму
  *
- * @param args
+ * @param args 
  *
  */ 
     public static void main (String [] args)
@@ -60,15 +60,22 @@ public class Lab_02 {
             //допоміжний масив адрес, що зберігає адреси одновимірних масивів, які власне міститимуть дані;
                 arr[i] = new char[size];//виділяємо динамічну пам'ять для кожної комірки нашого масиву, роблячи його двовимірним
             Fill_Matrix(arr, size,filler);//викликаємо функцію для заповнення двовимірного масиву
-            System.out.println("==================================");
             System.out.println("Start matrix:");
             Print_Maxtrix(arr, size);//виводимо наш масив
-            System.out.println("==================================");
             System.out.println("Matrix with shaded area:");
-            func(arr, size);//викликаємо функцію для заштрихування області
-            Print_Maxtrix(arr, size);//виводимо наш масив
+            Creating_picture(arr, size);//викликаємо функцію для заштрихування області
+            Print_Maxtrix(arr, size);//виводимо наш масив на екран
+            try {Printing_to_document_Maxtrix(arr, size) ;}//виводимо наш масив у файл
+            catch(IOException e){e.printStackTrace();}
         }
-    
+/**
+ * Статичний метод Fill_Matrix заповнює двовимірний масив розміру size символом filler
+ *
+ * @param arr масив
+ * @param size розмір масиву
+ * @param filler символ заповнення
+ *
+ */ 
     public static void Fill_Matrix (char[][] arr, int size,String filler)
     {
      for (int i = 0; i < size; i++)
@@ -78,31 +85,59 @@ public class Lab_02 {
             // двовимірного масиву символом заповнювачем
     }
     }
+/**
+ * Статичний метод Print_Maxtrix виводить довимірний масив в консоль у форматі матриці
+ *
+ * @param arr масив
+ * @param size розмір масиву
+ *
+ */     
     public static void Print_Maxtrix(char[][] arr, int size)
 {
 	for (int i = 0; i < size; i++)
 	{
 		for (int j = 0; j < size; j++)
-        {
-            System.out.print( arr[i][j]);//виводимо нашу матрицю встановивши відступ 4
-            System.out.print("\t");
-        }
+            System.out.print( arr[i][j] + "\t");//виводимо нашу матрицю встановивши відступ 4
 		System.out.println();
 	}
 }
-public static void func(char[][] arr, int n)
+/**
+ * Статичний метод Printing_to_document_Maxtrix виводить довимірний масив в файл у форматі матриці
+ *
+ * @param arr масив
+ * @param size розмір масиву
+ *
+ */   
+public static void Printing_to_document_Maxtrix(char[][] arr, int size) throws IOException
 {
-	for (int i = 1; i < n-1; i++)//відступаємо рамку товщиною 1
+    BufferedWriter writer = new BufferedWriter((new FileWriter("MyFile.txt")));
+	for (int i = 0; i < size; i++)
 	{
-		for (int j = 1; j < n-1; j++)
+		for (int j = 0; j < size; j++)
+            writer.write( arr[i][j] + "\t");//виводимо нашу матрицю встановивши відступ 4
+            writer.write("\n");
+	}
+    writer.flush();
+    writer.close();
+}
+/**
+ * Статичний метод Creating_picture редагує масив arr відповідно до завдання
+ *
+ * @param arr масив
+ * @param size розмір масиву
+ *
+ */   
+public static void Creating_picture(char[][] arr, int size)
+{
+	for (int i = 1; i < size-1; i++)//відступаємо рамку товщиною 1
+	{
+		for (int j = 1; j < size-1; j++)
 		{
 			arr[1][j] = ' ';//заповнюємо верхню горизонтальну частину заштрихованої області
 			arr[i][1] = ' ';//заповнюємо ліву вертикальну частину заштрихованої області
-			arr[n-2][j] = ' ';//заповнюємо нижню горизонтальну частину заштрихованої області
-			arr[i][n-2] = ' ';//заповнюємо праву вертикальну частину заштрихованої області
+			arr[size-2][j] = ' ';//заповнюємо нижню горизонтальну частину заштрихованої області
+			arr[i][size-2] = ' ';//заповнюємо праву вертикальну частину заштрихованої області
 		}
 	}
 }
-
-
 }
