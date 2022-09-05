@@ -71,6 +71,10 @@ public class Lab_02 {
                     {
                         System.out.print("\t");
                         writer.write("\t");
+                        if  (i<size)
+                        {
+                            arr[i][j] = 'o';
+                        }
                 arr[1][j] = (char)filler.codePointAt(0);//заповнюємо верхню горизонтальну частину заштрихованої області
                 arr[i][1] = (char)filler.codePointAt(0);//заповнюємо ліву вертикальну частину заштрихованої області
                 arr[size-2][j] = (char)filler.codePointAt(0);//заповнюємо нижню горизонтальну частину заштрихованої області
