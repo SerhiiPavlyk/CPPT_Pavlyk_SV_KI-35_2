@@ -133,7 +133,7 @@ public class Plane extends JComponent {
      /**
  * Method створює об'єкт класу Pilot
  */ 
-    private void callPilot()
+    private void callPilot() 
     {
         pilot = new Pilot();
         pilot.move(Pilot.pilot_size, height-100);//start pos
