@@ -16,7 +16,7 @@ class Pilot
  */ 
     public Pilot() 
     {
-        this.image = new ImageIcon(getClass().getResource("PlaneModel.png")).getImage();
+        this.image = new ImageIcon(getClass().getResource("/PlaneModel.png")).getImage();
     }
     public static final double pilot_size = 64;
     private double pilot_x,pilot_y;

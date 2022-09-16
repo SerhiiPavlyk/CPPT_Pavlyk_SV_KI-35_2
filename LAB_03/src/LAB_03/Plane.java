@@ -59,7 +59,9 @@ public class Plane extends JComponent {
         this.VolumeOfFuel = volumeOfFuel;
         this.MaxSpeed = 1;
         this.fout = new PrintWriter((new FileWriter("Log.txt")));
+        
     }
+    
     /**
  * Method запускає роботу гри
  * @param  height висота поля додатку
