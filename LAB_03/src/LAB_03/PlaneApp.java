@@ -44,6 +44,7 @@ private void SetParameters ()throws IOException
             plane.start();
         }
     }); 
+    if (!plane.isReady())
     plane.dispose();
 } 
 }

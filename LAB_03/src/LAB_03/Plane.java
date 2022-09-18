@@ -26,6 +26,9 @@ public class Plane extends JComponent {
     private int width;
     private Thread thread;
     private boolean ready = true;
+    public boolean isReady() {
+        return ready;
+    }
     private Graphics2D graphics2D;
     private BufferedImage image;
     private Pilot pilot;
@@ -72,7 +75,11 @@ public class Plane extends JComponent {
     {   
         height = getHeight();
         width = getWidth();
-        fout.write("Height = %d\nWidth = %d\n",height,width);
+        fout.write("Height = ");
+        fout.write(String.valueOf(height));
+        fout.write(" Width = ");
+        fout.write(String.valueOf(width));
+        fout.write(" \n");
         image = new BufferedImage(width,height,BufferedImage.TYPE_INT_ARGB);
         graphics2D = image.createGraphics();
         graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -94,9 +101,12 @@ public class Plane extends JComponent {
         } catch (OutOfMemoryError e)
         {
             JOptionPane.showMessageDialog(null, "You try to fill up more fuel than it can be!","Error", JOptionPane.ERROR_MESSAGE);
-            fout.write("An exception was thrown");
+            fout.write("An exception was thrown\n");
         }
-        fout.flush();
+        if (!ready)
+                {
+                    fout.close();
+                }
         thread.start();
     }
      /**
@@ -120,7 +130,7 @@ public class Plane extends JComponent {
         graphics2D.fillRect(0, height-100, width, height);
         graphics2D.setColor(new Color(137, 207, 240));
         graphics2D.fillRect(0, 0, width, height-100);
-        fout.write("BuildBackground was successful");
+        fout.write("BuildBackground was successful\n");
     }
      /**
  * Method створює літак
@@ -128,7 +138,7 @@ public class Plane extends JComponent {
     private void BuildPlane() 
     {
         pilot.BuildPilot(graphics2D);
-        fout.write("BuildPlane was successful");
+        fout.write("BuildPlane was successful\n");
     }
      /**
  * Method створює об'єкт класу Pilot
@@ -137,7 +147,7 @@ public class Plane extends JComponent {
     {
         pilot = new Pilot();
         pilot.move(Pilot.pilot_size, height-100);//start pos
-        fout.write("callPilot was successful");
+        fout.write("callPilot was successful\n");
     }
      /**
  * Method створює об'єкт класу Helm та Engine
@@ -192,7 +202,7 @@ public class Plane extends JComponent {
                 
             }
         }).start(); 
-        fout.write("BuildHelmAndEngine was successful");
+        fout.write("BuildHelmAndEngine was successful\n");
     }
      /**
  * Method закінчує гру, якщо в літака закінчилося паливо і повертає його в початкову позицію
@@ -201,7 +211,7 @@ public class Plane extends JComponent {
     {  
         pilot.move(Pilot.pilot_size, height-100);
         pilot.ChangeAngle(0);
-        fout.write("fall was successful");
+        fout.write("fall was successful\n");
         return true;
     }
      /**
@@ -216,7 +226,7 @@ public class Plane extends JComponent {
         else if ( x<0 ) pilot.setPilot_x(width);
         else if (y >= height) pilot.setPilot_y(0);
         else if (y <0) pilot.setPilot_y(height);
-        fout.write("OutOfScren was successful");
+        fout.write("OutOfScren was successful\n");
     }
       /**
  * Method генерує графічні об'єкти
@@ -226,7 +236,7 @@ public class Plane extends JComponent {
         Graphics graphaics = getGraphics();
         graphaics.drawImage(image, 0, 0, null);
         graphaics.dispose();
-        fout.write("Render was successful");
+        fout.write("Render was successful\n");
     }
       /**
  * Method, який відповідає за рух літака
@@ -240,7 +250,7 @@ public class Plane extends JComponent {
         y = pilot.getPilot_y();
         y += Math.sin(Math.toRadians(pilot.getAngle()))* engine.getSpeed();
         pilot.setPilot_y(y);       
-        fout.write("GoMoving was successful"); 
+        fout.write("GoMoving was successful\n"); 
     }
     /**
  * Method releases used recourses
