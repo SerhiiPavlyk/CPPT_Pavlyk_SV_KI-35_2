@@ -29,8 +29,8 @@ public class CalcExeption
         fout.print(res);
         }
         finally
-        {
-        fout.flush();
+        { 
+        fout.flush(); 
         fout.close();
         input.close();
         }

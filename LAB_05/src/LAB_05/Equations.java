@@ -7,7 +7,7 @@ package LAB_05;
  */
 public class Equations
 {
- /**
+ /** 
  * Method calculates the tg(x) / sin (2x) expression
  * @param x Angle in degrees
  * @throws CalcException
