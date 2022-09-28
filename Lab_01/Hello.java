@@ -5,4 +5,4 @@ public class Hello {
         String group = "KI-35";
         System.out.println(last_name+ " " +name + " "  + group);
 }
-}
+} 
