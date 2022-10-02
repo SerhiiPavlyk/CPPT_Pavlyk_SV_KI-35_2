@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"LAB_06","l":"CalcExeption"},{"p":"LAB_06","l":"Equations"}];updateSearchResults();
