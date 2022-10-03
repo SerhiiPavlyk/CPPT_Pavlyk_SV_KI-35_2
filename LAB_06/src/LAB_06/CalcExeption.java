@@ -4,7 +4,7 @@ import java.util.*;
  * Class CalcExeption realize driver for given expression calculator
  * @author Pavlyk Serhii
  * @version 1.0
-*/ 
+*/  
 public class CalcExeption
 {
 /**
