@@ -1,5 +1,5 @@
 import java.util.*;
-import java.io.*; 
+import java.io.*;
 /**
  * Клас Lab_02 реалізує приклад програми до лабораторної роботи 2
  *
@@ -12,9 +12,9 @@ public class Lab_02 {
 /**
  * Статичний метод main є точкою входу в програму
  *
- * @param args 
+ * @param args
  *
- */ 
+ */
     public static void main (String [] args)throws IOException
     {
         int size = 0;
@@ -34,7 +34,7 @@ public class Lab_02 {
                 }
                 break;
             }
-            catch (Exception e) 
+            catch (Exception e)
             {
                 System.out.println("Incorrect input of int. Try again. ");
                 System.out.print("Enter size\t");
@@ -71,10 +71,6 @@ public class Lab_02 {
                     {
                         System.out.print("\t");
                         writer.write("\t");
-                        if  (i<size)
-                        {
-                            arr[i][j] = 'o';
-                        }
                 arr[1][j] = (char)filler.codePointAt(0);//заповнюємо верхню горизонтальну частину заштрихованої області
                 arr[i][1] = (char)filler.codePointAt(0);//заповнюємо ліву вертикальну частину заштрихованої області
                 arr[size-2][j] = (char)filler.codePointAt(0);//заповнюємо нижню горизонтальну частину заштрихованої області
