@@ -60,6 +60,52 @@ class T_Short extends Cloth
         return a.compareTo(o.getPrice());
     }
 }
+class Pants extends Cloth
+{
+    private String material;
+    public String getName() {
+        return material + getColor();
+    }
+    Pants(int size, String color, String material, double price)
+    {
+        super(size,color,price);
+        this.material = material;
+    }
+    @Override
+    public void printInformation() {
+        System.out.println("Pants:\nColor: " + getColor() +"\nSize: " + getSize()
+        +"\nMaterial: " + material +"\nPrice: " + getPrice() );
+        
+    }
+    @Override
+    public int compareTo(actionsWithClothes o) {
+       Double a = this.getPrice();
+        return a.compareTo(o.getPrice());
+    }
+}
+class Jacket extends Cloth
+{
+    private String weave;
+    public String getName() {
+        return weave + getColor();
+    }
+    Jacket(int size, String color, String weave, double price)
+    {
+        super(size,color,price);
+        this.weave = weave;
+    }
+    @Override
+    public void printInformation() {
+        System.out.println("Jacket:\nColor: " + getColor() +"\nSize: " + getSize()
+        +"\nWeave: " + weave +"\nPrice: " + getPrice() );
+        
+    }
+    @Override
+    public int compareTo(actionsWithClothes o) {
+       Double a = this.getPrice();
+        return a.compareTo(o.getPrice());
+    }
+}
 class Wardrobe <T extends actionsWithClothes>
 {
 private ArrayList<T> arrayList;
@@ -111,9 +157,13 @@ public class Main {
     public static void main(String[] args)
     {
        Wardrobe<? super Cloth> wardrobe = new Wardrobe<Cloth>();
-       wardrobe.AddData(new T_Short(36,"red","sun",10.4));
-       wardrobe.AddData(new T_Short(41,"blue","flower",12.4));
-       //wardrobe.DeleteData("sun");
+       wardrobe.AddData(new T_Short(44,"red","sun",10.4));
+       wardrobe.AddData(new Jacket(52, "black", "skull", 20.9));
+       wardrobe.AddData(new Pants(112, "black", "jeans", 16.9));
+       wardrobe.AddData(new T_Short(43,"blue","flower",12.4));
+       System.out.println("The cheapest cloth in the Wardrobe:");
+       wardrobe.findMin().printInformation();
+       wardrobe.DeleteData("sun");
        System.out.println("The cheapest cloth in the Wardrobe:");
        wardrobe.findMin().printInformation();
    }
